@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="addNew">
-			<button class="btn btn-success p-5 fs-2" @click="addTeam">Add a Team</button>
+			<button class="btn btn-success p-5 fs-5" @click="addTeam">Add a Team</button>
 			<button class="btn btn-danger p-5 fs-5" @click="clearEverything">Reset</button>
 		</div>
 	</div>
