@@ -4,7 +4,7 @@
 	</nav>
 	<!-- <router-view /> -->
 	<div class="d-flex flex-wrap justify-content-around p-4 gap-5">
-		<div v-for="team in teams" :key="team.name" class="card" style="min-width: 25rem;">
+		<div v-for="team in teams" :key="team.name" class="card" style="min-width: 25rem">
 			<div class="card-header h4">Team: {{ team.name }}</div>
 			<div class="card-body overflow-auto" style="height: 30rem">
 				<h5 class="card-title">Achievments</h5>
@@ -12,10 +12,13 @@
 					<li
 						v-for="achievement in team.achievements"
 						:key="achievement.name"
-						class="list-group-item d-flex justify-content-between align-items-center"
+						class="list-group-item d-lg-flex justify-content-between align-items-center"
 					>
+						<button class="btn btn-danger mx-lg-2" @click="removeAchievement(team.name, achievement.name)">-</button>
 						{{ achievement.name }}
-						<span class="badge rounded-pill fs-6 px-3" :class="achievement.points > 0 ? 'bg-success' : 'bg-danger'">{{ achievement.points }}</span>
+						<span class="badge rounded-pill fs-6 px-3 mx-lg-2" :class="achievement.points > 0 ? 'bg-success' : 'bg-danger'">{{
+							achievement.points
+						}}</span>
 					</li>
 				</ul>
 				<button class="btn btn-primary" @click="addAchievement(team.name)">Add Achievement</button>
@@ -59,8 +62,8 @@ onMounted(() => {
 	}
 })
 const addAchievement = (teamName) => {
-	let acheievemntName = prompt("Enter the name of the Achievement")
-	let acheievemntPoints = prompt("Enter Value of Event")
+	let acheievemntName = prompt("Enter the name of the achievement")
+	let acheievemntPoints = prompt("Enter achievement points")
 	if (acheievemntName && acheievemntPoints) {
 		let selectedTeam = teams.value.filter((team) => team.name == teamName)[0]
 		selectedTeam["achievements"].push({ name: acheievemntName, points: parseInt(acheievemntPoints) })
@@ -68,7 +71,7 @@ const addAchievement = (teamName) => {
 	}
 }
 const addMember = (teamName) => {
-	let memberName = prompt("Enter the name of the Member")
+	let memberName = prompt("Enter the name of the member")
 	if (memberName) {
 		let selectedTeam = teams.value.filter((team) => team.name == teamName)[0]
 		selectedTeam["members"].push(memberName)
@@ -82,6 +85,14 @@ const addTeam = () => {
 		teams.value.push(team)
 		localStorage.setItem("teams", JSON.stringify(teams.value))
 	}
+}
+const removeAchievement = (teamName, achievementName) => {
+	console.log(achievementName)
+	let selectedTeam = teams.value.filter((team) => team.name == teamName)[0]
+	console.log(selectedTeam.achievements)
+	selectedTeam["achievements"] = selectedTeam["achievements"].filter((achievement) => achievement.name != achievementName)
+	console.log(selectedTeam.achievements)
+	localStorage.setItem("teams", JSON.stringify(teams.value))
 }
 const clearEverything = () => {
 	let password = prompt("Enter Secret Code")
