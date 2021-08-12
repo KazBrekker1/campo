@@ -4,7 +4,7 @@
 	</nav>
 	<!-- <router-view /> -->
 	<div class="d-flex flex-wrap justify-content-around p-4 gap-5">
-		<div v-for="team in teams" :key="team.name" class="card w-25">
+		<div v-for="team in teams" :key="team.name" class="card" style="min-width: 25rem;">
 			<div class="card-header h4">Team: {{ team.name }}</div>
 			<div class="card-body overflow-auto" style="height: 30rem">
 				<h5 class="card-title">Achievments</h5>
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="addNew">
-			<button class="btn btn-success p-5 fs-2" @click="addTeam">+</button>
+			<button class="btn btn-success p-5 fs-2" @click="addTeam">Add a Team</button>
 			<button class="btn btn-danger p-5 fs-5" @click="clearEverything">Reset</button>
 		</div>
 	</div>
