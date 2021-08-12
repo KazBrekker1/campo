@@ -42,11 +42,13 @@
 			<button class="btn btn-danger p-5 fs-5" @click="clearEverything">Reset</button>
 		</div>
 	</div>
+	<ReloadPrompt />
 </template>
 
 <script setup>
 import { ref } from "@vue/reactivity"
 import { onMounted } from "@vue/runtime-core"
+import ReloadPrompt from "./components/ReloadPrompt.vue"
 
 let teams = ref([])
 onMounted(() => {
